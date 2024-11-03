@@ -2,8 +2,6 @@
 #
 # sshive.py
 
-#!/usr/bin/env python3
-
 import socket
 import paramiko
 import threading
@@ -12,7 +10,10 @@ import argparse
 import os
 import sys
 import signal
+import warnings
 from paramiko import SSHException
+from cryptography.utils import CryptographyDeprecationWarning
+warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
 
 # Constants
 DEFAULT_PORT = 2222

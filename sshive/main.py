@@ -191,7 +191,7 @@ def stop_honeypot():
     else:
         print("Honeypot is not running.")
 
-if __name__ == "__main__":
+def main():
     if args.ps:
         check_honeypot_running()
     elif args.stop:
@@ -200,3 +200,6 @@ if __name__ == "__main__":
         if args.daemon:
             daemonize()
         start_honeypot()
+
+if __name__ == "__main__":
+    main()

@@ -20,7 +20,7 @@ DEFAULT_KEY_PATH = "/tmp/ssh_honeypot_rsa"
 DEFAULT_LOG_FILE = "ssh_honeypot.log"
 PID_FILE = "/tmp/ssh_honeypot.pid"
 HOST = "0.0.0.0"  # Listen on all network interfaces
-SSH_BANNER = "SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.11"
+SSH_BANNER = "SSH-2.0-OpenSSH_5.3" # Default to old known exploitable version
 
 # Argument parsing
 parser = argparse.ArgumentParser(description="SSH Honeypot Server")

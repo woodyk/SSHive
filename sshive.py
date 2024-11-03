@@ -12,8 +12,7 @@ import sys
 import signal
 import warnings
 from paramiko import SSHException
-from cryptography.utils import CryptographyDeprecationWarning
-warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
+warnings.filterwarnings(action='ignore', module='.*paramiko.*')
 
 # Constants
 DEFAULT_PORT = 2222

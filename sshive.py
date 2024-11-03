@@ -97,8 +97,11 @@ def handle_client(client_socket, client_address):
         try:
             # Start the server and listen for authentication attempts
             transport.start_server(server=server)
-        except SSHException as e:
-            logging.warning(f"SSH negotiation failed with {client_address[0]}: {e}")
+        except paramiko.SSHException as e:
+            logging.warning(f"SSH protocol error with {client_address[0]}: {e}")
+            return
+        except EOFError:
+            logging.warning(f"Client {client_address[0]} disconnected unexpectedly during SSH banner exchange.")
             return
 
         # Keep the connection open to simulate a real SSH server
@@ -110,7 +113,7 @@ def handle_client(client_socket, client_address):
     
     except EOFError:
         logging.warning(f"Client {client_address[0]} disconnected unexpectedly during SSH banner exchange.")
-    except SSHException as e:
+    except paramiko.SSHException as e:
         logging.warning(f"SSH protocol error with {client_address[0]}: {e}")
     except Exception as e:
         logging.error(f"Unexpected error with client {client_address[0]}: {e}")

@@ -28,7 +28,7 @@ and connection details. SSHive runs as a daemon or in the foreground, providing 
    Clone this repository and navigate to the project directory:
 
    ```bash
-   git clone https://github.com/yourusername/SSHive.git
+   git clone https://github.com/woodyk/SSHive.git
    cd SSHive
    ```
 

@@ -100,6 +100,9 @@ def handle_client(client_socket, client_address):
         except paramiko.SSHException as e:
             logging.warning(f"SSH protocol error with {client_address[0]}: {e}")
             return
+        except UnicodeDecodeError as e:
+            logging.warning(f"Non-UTF8 data received from {client_address[0]}, likely not an SSH client: {e}")
+            return
         except EOFError:
             logging.warning(f"Client {client_address[0]} disconnected unexpectedly during SSH banner exchange.")
             return
@@ -111,6 +114,8 @@ def handle_client(client_socket, client_address):
                 break
             channel.close()
     
+    except UnicodeDecodeError as e:
+        logging.warning(f"Non-UTF8 data received from {client_address[0]}, likely not an SSH client: {e}")
     except EOFError:
         logging.warning(f"Client {client_address[0]} disconnected unexpectedly during SSH banner exchange.")
     except paramiko.SSHException as e:
